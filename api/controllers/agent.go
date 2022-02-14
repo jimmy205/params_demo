@@ -26,3 +26,13 @@ func ValidateAge(c *gin.Context) {
 
 	response.SuccessWithMessage("validate age successs", c)
 }
+
+func ValidateGender(c *gin.Context) {
+	input := dtos.GenderInput{}
+	if err := c.ShouldBindJSON(&input); err != nil {
+		response.BadRequest(err, input, c)
+		return
+	}
+
+	response.SuccessWithMessage("validate gender successs", c)
+}

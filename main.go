@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	router := setupRouter()
+	setupRouter()
 
 	// 驗證username
 	validate(dtos.UsernameInput{Username: "ahsing"}, "/api/username")
@@ -22,7 +22,8 @@ func main() {
 	// 驗證age
 	// validate(dtos.AgeInput{Age: 1}, "/api/age")
 
-	router.Run()
+	// 驗證age
+	validate(dtos.GenderInput{Gender: "female"}, "/api/gender")
 }
 
 func setupRouter() *gin.Engine {
@@ -31,6 +32,7 @@ func setupRouter() *gin.Engine {
 
 	router.POST("/api/username", controllers.ValidateUsername)
 	router.POST("/api/age", controllers.ValidateAge)
+	router.POST("/api/gender", controllers.ValidateGender)
 
 	return router
 }
@@ -50,4 +52,5 @@ func validate(params interface{}, path string) {
 	log.Printf("路徑 %s", path)
 	log.Printf("參數 %s", string(b))
 	log.Printf("回傳 %s", w.Body)
+	log.Println("----- ----- -----")
 }
